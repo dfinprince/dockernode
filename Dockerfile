@@ -4,7 +4,7 @@ FROM node:9.11.1-alpine
 WORKDIR /app
 
 # install nodemon for debugging purpose
-RUN npm i nodemon@latest -g
+RUN npm install nodemon@latest -g
 
 # A wildcard is used to copy the package files.
 COPY package.json /app/package.json
