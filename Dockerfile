@@ -3,15 +3,16 @@ FROM node:9.11.1-alpine
 # Create app directory
 WORKDIR /app
 
-# A wildcard is used to copy the package files.
-COPY package*.json /app/
-
 # install nodemon for debugging purpose
 RUN npm i nodemon@latest -g
+
+# A wildcard is used to copy the package files.
+COPY package.json /app/package.json
 
 # Install app dependencies
 # For production, use npm install --only=production
 RUN npm install
+RUN mv /app/node_modules /node_modules
 
 # Bundle app source
 COPY . /app
