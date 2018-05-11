@@ -10,15 +10,17 @@
             "name": "Docker: Attach to Node",
             "port": 5858,
             "address": "localhost",
+            "restart": true,
+            "sourceMaps": false,
+            "outFiles": [],
             "localRoot": "${workspaceRoot}/",
-            "remoteRoot": "/app",
-             "restart": true,
+            "remoteRoot": "/app"       
         },
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server.js"
+            "program": "${workspaceFolder}/src/js/server.js"
         }
     ]
 }

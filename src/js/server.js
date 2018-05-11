@@ -8,10 +8,11 @@ var index = require('./routes/index');
 
 // constants
 const port = process.env.port || 8080;
-const host = '0.0.0.0';
 
 // Create app
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,14 +21,36 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/users', index);
+app.use('/', index);
 
-app.get('/', (req,res) => {
-    let s = JSON.stringify(process.env, null, "\n");
-    res.send('Hello World : ' + s);
-});
+app.on('error', (error) => {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-app.listen(port, host, () => {
+        // Handle specific listen errors with friendly messages
+        switch (error.code) {
+          case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+          case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+          default:
+            throw error;
+        }    
+    });
+
+app.on('listening', (error) => {
+    });
+
+app.listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log('listening ' + host + 'on : ' + port);
+    console.log('listening ' + 'on : ' + port);
 })

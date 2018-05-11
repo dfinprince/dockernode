@@ -8,15 +8,14 @@
     "dockerbuild": "docker build -t dfsco1prince/node-web-app .",
     "dockerrun": "docker run -p 8000:8080 -d dfsco1prince/node-web-app",
     "dockerstart": "npm run dockerbuild && npm run dockerrun",
-    "lint": "eslint --fix src/js/*.js && eslint src/js",
-    "start": "node src/js/server.js"
+    "lint": "eslint --fix src/js/*.js && eslint src/js"
   },
   "author": "Prince Cheruvathur",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "body-parser": "^1.18.2"
   },
   "devDependencies": {
     "eslint": "^4.19.1"
