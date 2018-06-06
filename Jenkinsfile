@@ -5,10 +5,9 @@ node {
             echo "Branch: ${env.BRANCH_NAME}"
             sh 'printenv'
             sh 'docker -v'
-            sh 'docker-compose up'
         }
         stage('Build and run auditboard test') {
-                sh 'docker-compose up'
+                sh 'docker -v'
             }
     }
 }
