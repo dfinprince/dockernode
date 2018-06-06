@@ -6,5 +6,8 @@ node {
             sh 'printenv'
             sh 'docker -v'
         }
+        stage('Build and run auditboard test') {
+                sh 'docker-compose up'
+            }
     }
 }
