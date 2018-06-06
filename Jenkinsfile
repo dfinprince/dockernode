@@ -4,6 +4,7 @@ node {
             sh 'git --version'
             echo "Branch: ${env.BRANCH_NAME}"
             sh 'printenv'
+            sh 'docker -v'
         }
     }
 }
