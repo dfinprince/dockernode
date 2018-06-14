@@ -1,6 +1,6 @@
 node {
     def app
-    def dockerfile = 'Dockerfile-dev'
+    def dockerfile = './api/Dockerfile-dev'
     docker.image('node:latest').inside {
         stage('Clone repository') {
       /*      sh 'git --version'
