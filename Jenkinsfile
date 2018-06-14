@@ -10,7 +10,7 @@ node {
             }
         stage('Build image') {
              /*   sh 'docker -v'*/
-             app = docker.build("dfsco1prince/jenkins-dockernode","./api")
+             app = docker.build("dfsco1prince/jenkins-dockernode","./api/Dockerfile-dev")
             }
         stage('Test image') {
             app.inside {
