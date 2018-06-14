@@ -12,8 +12,10 @@ node {
         stage('Build image') {
              /*   sh 'docker -v'*/
              docker.image('mongo:latest').withRun('-e "MONGO_DB_DEV_PORT=27007" -e "MONGO_DB_DEV_HOST=db-dev" -e "MONGO_DB_DEV_URL=mongodb://db-dev:27007/" -v "$(pwd)/db:/data/db" -p 27007:27017') { c ->
-                    sh 'mongod --config /data/db/mongod.conf'
-                    app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
+                    docker.image('mongo:latest').inside() {
+                        sh 'mongod --config /data/db/mongod.conf'
+                        app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
+                    }
                 }
                                                     
                  /*                                   
