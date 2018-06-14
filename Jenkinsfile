@@ -1,5 +1,6 @@
 node {
     def app
+    def dockerfile = 'Dockerfile-dev'
     docker.image('node:latest').inside {
         stage('Clone repository') {
       /*      sh 'git --version'
@@ -10,7 +11,7 @@ node {
             }
         stage('Build image') {
              /*   sh 'docker -v'*/
-             app = docker.build("dfsco1prince/jenkins-dockernode","./api/Dockerfile-dev")
+             app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
             }
         stage('Test image') {
             app.inside {
