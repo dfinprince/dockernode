@@ -18,7 +18,7 @@ node {
                         docker.image('node:latest').inside {
                             sh 'cd ./api'
                             sh 'ls -la'
-                            sh 'npm install && npm run start'
+                            sh 'cd ./api && npm install && npm run start'
                         }
                     }
 
