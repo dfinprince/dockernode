@@ -18,6 +18,7 @@ node {
                     }
 
                     app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
+                    sh 'pwd && ls -la'
                     sh 'cd api && npm run start'
                 }
                 
