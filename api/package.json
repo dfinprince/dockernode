@@ -8,7 +8,8 @@
     "dockerbuild": "docker build -t dfsco1prince/node-web-app .",
     "dockerrun": "docker run -p 8000:8080 -d dfsco1prince/node-web-app",
     "dockerstart": "npm run dockerbuild && npm run dockerrun",
-    "lint": "eslint --fix src/js/*.js && eslint src/js"
+    "lint": "eslint --fix src/js/*.js && eslint src/js",
+    "start":"nodemon -L --inspect=0.0.0.0:5858"
   },
   "author": "Prince Cheruvathur",
   "license": "MIT",
