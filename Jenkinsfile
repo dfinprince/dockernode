@@ -17,7 +17,7 @@ node {
                         sh 'mongod --config $(pwd)/db/mongod.conf &'
                         docker.image('node:latest').inside {
                             sh 'ls -la'
-                            sh 'cd ./api && npm install && npm install nodemon@latest -g && npm run start'
+                            sh 'cd ./api && npm install && npm install nodemon@latest -g && npm run start &'
                         }
                     }
 
