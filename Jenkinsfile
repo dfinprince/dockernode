@@ -3,11 +3,11 @@ node {
     def dockerfile = './api/Dockerfile-dev'
     docker.image('node:latest').inside {
         stage('Clone repository') {
-            sh 'git --version'
+         /*   sh 'git --version'
             echo "Branch: ${env.BRANCH_NAME}"
             sh 'printenv'
             sh 'docker -v'
-            sh 'node --version'
+            sh 'node --version'*/
             checkout scm
             }
         stage('Build image') {
@@ -15,10 +15,13 @@ node {
              docker.image('mongo:latest').withRun('-d --env "MONGO_DB_DEV_PORT=27007" --env "MONGO_DB_DEV_HOST=db-dev" --env "MONGO_DB_DEV_URL=mongodb://db-dev:27007/" -v "$(pwd)/db:/data/db" -p 27007:27017') { c ->
                     docker.image('mongo:latest').inside() {
                         sh 'mongod --config $(pwd)/db/mongod.conf &'
+                        sh 'cd ./api'
+                        sh 'ls -la'
+                        sh 'npm install && npm run start'
+
                     }
 
                     app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
-                    sh 'cd ./api && "ls -la" && npm install && npm run start'
                 }
                 
                 
