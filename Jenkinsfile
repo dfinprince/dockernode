@@ -3,10 +3,11 @@ node {
     def dockerfile = './api/Dockerfile-dev'
     docker.image('node:latest').inside {
         stage('Clone repository') {
-      /*      sh 'git --version'
+            sh 'git --version'
             echo "Branch: ${env.BRANCH_NAME}"
             sh 'printenv'
-            sh 'docker -v'*/
+            sh 'docker -v'
+            sh 'node --version'
             checkout scm
             }
         stage('Build image') {
