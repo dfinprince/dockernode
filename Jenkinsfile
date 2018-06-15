@@ -16,6 +16,7 @@ node {
                     docker.image('mongo:latest').inside() {
                         sh 'mongod --config $(pwd)/db/mongod.conf &'
                         app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
+                        sh 'npm run start'
                     }
                 }
                                                     
