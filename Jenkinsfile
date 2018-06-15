@@ -15,11 +15,12 @@ node {
              docker.image('mongo:latest').withRun('-d --env "MONGO_DB_DEV_PORT=27007" --env "MONGO_DB_DEV_HOST=db-dev" --env "MONGO_DB_DEV_URL=mongodb://db-dev:27007/" -v "$(pwd)/db:/data/db" -p 27007:27017') { c ->
                     docker.image('mongo:latest').inside() {
                         sh 'mongod --config $(pwd)/db/mongod.conf &'
-                        app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
-                        sh 'npm run start'
                     }
                 }
-                                                    
+                
+                app = docker.build("dfsco1prince/jenkins-dockernode","-f ${dockerfile} ./api")
+                sh 'npm run start'
+                                                  
                  /*                                   
                                                     {
                 timeout(5) {
